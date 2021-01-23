@@ -141,7 +141,7 @@ chaincodeAddProduct() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["addNewProduct", "3", "Product3","100", "Pharmacy1", "10","03.03.2020","01.03.2033","on sale", "Pharmacy1", "03.04.2020" ]}'
+    -c '{"Args":["addNewProduct", "Pharmacy1_AUGBID_01.01.2021", "AUGBID_01.01.2020", "65", "Pharmacy1","13$","03.03.2020","01.03.2033","on sale", "Pharmacy1", "03.04.2020", "" ]}'
     echo "===================== Successfully Added New Product===================== "
 }
 
@@ -153,7 +153,7 @@ chaincodeQueryProductById() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["queryProductById", "3"]}'
+    -c '{"Args":["queryProductById", "Pharmacy1_AUGBID_01.01.2021"]}'
     echo "===================== Successfully Invoked Query Product By Id Chaincode Function===================== "
 }
 
@@ -165,7 +165,7 @@ chaincodeTransferProductOwnership() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["changeProductOwnership", "3","Pharmacy2"]}'
+    -c '{"Args":["changeProductOwnership", "Pharmacy1_AUGBID_01.01.2021","Pharmacy2"]}'
     echo "===================== Successfully Invoked Product Ownership Transferred Chaincode Function===================== "
 }
 
