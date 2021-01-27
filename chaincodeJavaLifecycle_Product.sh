@@ -169,6 +169,18 @@ chaincodeTransferProductOwnership() {
     echo "===================== Successfully Invoked Product Ownership Transferred Chaincode Function===================== "
 }
 
+chaincodeTransferProductSolveModel() {
+    echo "===================== Started Product SolveModel Transferred Chaincode Function===================== "
+    setEnvVarsForPeer0Org1
+    peer chaincode invoke -o $ORDERER_ADDRESS\
+    --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED\
+    --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
+    --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
+    --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
+    -c '{"Args":["solveModel", "3","4", "41,35,96", "{{2, 3, 7}, {1, 1, 0}, {5, 3, 0}, {0.6, 0.25, 1}}" ,"1250,250,900,232.5" ]}'
+    echo "===================== Successfully Invoked Product SolveModel Transferred Chaincode Function===================== "
+}
+
 packageChaincode
 installChaincode
 queryInstalled
@@ -186,4 +198,6 @@ sleep 5
 chaincodeQueryProductById
 sleep 5
 chaincodeTransferProductOwnership
+sleep 5
+chaincodeTransferProductSolveModel
 
