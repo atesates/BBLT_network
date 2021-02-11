@@ -191,7 +191,7 @@ chaincodeTransferProductSolveModel() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["Pharmacies", "3","4", "41,35,96", "{{2, 3, 7}, {1, 1, 0}, {5, 3, 0}, {0.6, 0.25, 1}}" ,"1250,250,900,232.5" ]}'
+    -c '{"Args":["solveMyModel", "Pharmacy1_AUGBID_01.01.2021", "3","4", "41,35,96", "{{2, 3, 7}, {1, 1, 0}, {5, 3, 0}, {0.6, 0.25, 1}}" ,"1250,250,900,232.5" ]}'
     echo "===================== Successfully SolveModel Transferred Chaincode Function========== "
 }
 
@@ -204,7 +204,7 @@ chaincodePharmaciesSolveModel() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["Pharmacies"]}'
+    -c '{"Args":["solveModel", "3","4", "41,35,96", "{{2, 30, 7}, {1, 1, 0}, {5, 3, 0}, {0.6, 0.25, 1}}" ,"1250,250,900,232.5" ]}'
     echo "===================== Successfully Pharmacies SolveModel Chaincode Function========== "
 }
 packageChaincode
@@ -216,18 +216,18 @@ approveForMyOrg2
 checkCommitReadynessForOrg2
 commitChaincodeDefination
 queryCommitted
-sleep 5
+sleep 3
 chaincodeInvokeInit
-sleep 5
+sleep 3
 chaincodeAddProduct
-sleep 5
+sleep 3
 chaincodeQueryProductById
-sleep 5
+sleep 3
 chaincodeTransferProductOwnership
-sleep 5
+sleep 3
 chaincodePurchaseSomeProduct
-sleep 5
-chaincodeTransferProductSolveModel
-sleep 5
-chaincodePharmaciesSolveModel
+#sleep 5
+#chaincodeTransferProductSolveModel
+#sleep 5
+#chaincodePharmaciesSolveModel
 
