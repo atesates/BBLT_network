@@ -143,7 +143,7 @@ chaincodeAddProduct() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["addNewProduct", "Pharmacy1_AUGBID_01.01.2021", "AUGBID_01.01.2020","AUGBID",  "Pharmacy1","13","65","03.03.2033","01.03.2020","on sale", "03.04.2020","Pharmacy1",  "" ]}'
+    -c '{"Args":["addNewProduct", "Pharmacy1_AUGBID_01.01.2021", "AUGBID_01.01.2020","AUGBID",  "Pharmacy1","13","65","03.03.2033","01.03.2020","on sale", "03.04.2020","Pharmacy1",  "null" ]}'
     echo "===================== Successfully Added New Product===================== "
 }
 
@@ -183,6 +183,18 @@ chaincodePurchaseSomeProduct() {
     echo "===================== Successfully purchased Some Product Chaincode Function===================== "
 }
 
+queryProduct() {
+    echo "===================== Started Query All Product Chaincode Function=============== "
+    setEnvVarsForPeer0Org1
+    peer chaincode invoke -o $ORDERER_ADDRESS\
+    --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED\
+    --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
+    --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
+    --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
+    -c '{"Args":["queryAllProducts"]}'
+    echo "===================== Successfully Query All Product Product Chaincode Function===================== "
+}
+
 chaincodeTransferProductSolveModel() {
     echo "===================== Started SolveModel Transferred Chaincode Function========== "
     setEnvVarsForPeer0Org1
@@ -218,14 +230,16 @@ commitChaincodeDefination
 queryCommitted
 sleep 3
 chaincodeInvokeInit
-#sleep 3
-#chaincodeAddProduct
-#sleep 3
-#chaincodeQueryProductById
-#sleep 3
-#chaincodeTransferProductOwnership
-#sleep 3
-#chaincodePurchaseSomeProduct
+sleep 3
+chaincodeAddProduct
+sleep 3
+chaincodeQueryProductById
+sleep 3
+chaincodeTransferProductOwnership
+sleep 3
+chaincodePurchaseSomeProduct
+sleep 3
+queryProduct
 #sleep 5
 #chaincodeTransferProductSolveModel
 #sleep 5

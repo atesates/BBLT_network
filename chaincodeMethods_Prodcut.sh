@@ -143,7 +143,7 @@ chaincodeAddProduct() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["addNewProduct", "Pharmacy1_AUGBID_01.01.2021", "AUGBID_01.01.2020","AUGBID",  "Pharmacy1","13","65","03.03.2033","01.03.2020","on sale", "03.04.2020","Pharmacy1",  "" ]}'
+    -c '{"Args":["addNewProduct", "Pharmacy2_AUGBID_01.01.2021", "AUGBID_01.01.2020","AUGBID",  "Pharmacy1","13","65","03.03.2033","01.03.2020","on sale", "03.04.2020","Pharmacy1",  "" ]}'
     echo "===================== Successfully Added New Product===================== "
 }
 
@@ -207,25 +207,90 @@ chaincodePharmaciesSolveModel() {
     -c '{"Args":["solveModel", "3","4", "41,35,96", "{{2, 30, 7}, {1, 1, 0}, {5, 3, 0}, {0.6, 0.25, 1}}" ,"1250,250,900,232.5" ]}'
     echo "===================== Successfully Pharmacies SolveModel Chaincode Function========== "
 }
-packageChaincode
-installChaincode
-queryInstalled
-approveForMyOrg1
-checkCommitReadynessForOrg1
-approveForMyOrg2
-checkCommitReadynessForOrg2
-commitChaincodeDefination
-queryCommitted
+chaincodeAddProduct3() {
+    echo "===================== Started Add Product Chaincode Function===================== "
+    setEnvVarsForPeer0Org1
+    peer chaincode invoke -o $ORDERER_ADDRESS\
+    --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED\
+    --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
+    --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
+    --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
+    -c '{"Args":["addNewProduct", "Pharmacy3_AUGBID_01.01.2021", "AUGBID_01.01.2020","AUGBID",  "Pharmacy1","13","65","03.03.2033","01.03.2020","on sale", "03.04.2020","Pharmacy1",  "" ]}'
+    echo "===================== Successfully Added New Product===================== "
+}
+chaincodeAddProduct4() {
+    echo "===================== Started Add Product Chaincode Function===================== "
+    setEnvVarsForPeer0Org1
+    peer chaincode invoke -o $ORDERER_ADDRESS\
+    --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED\
+    --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
+    --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
+    --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
+    -c '{"Args":["addNewProduct", "Pharmacy4_AUGBID_04.04.2021", "AUGBID_01.01.2020","AUGBID",  "Pharmacy4","13","65","03.03.2033","01.03.2020","on sale", "03.04.2020","Pharmacy1",  "" ]}'
+    echo "===================== Successfully Added New Product===================== "
+}
+chaincodeAddProduct5() {
+    echo "===================== Started Add Product Chaincode Function===================== "
+    setEnvVarsForPeer0Org1
+    peer chaincode invoke -o $ORDERER_ADDRESS\
+    --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED\
+    --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
+    --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
+    --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
+    -c '{"Args":["addNewProduct", "Pharmacy5_AUGBID_05.05.2021", "AUGBID_01.01.2020","AUGBID",  "Pharmacy5","13","65","03.03.2033","01.03.2020","on sale", "03.04.2020","Pharmacy1",  "" ]}'
+    echo "===================== Successfully Added New Product===================== "
+}
+chaincodeAddProduct6() {
+    echo "===================== Started Add Product Chaincode Function===================== "
+    setEnvVarsForPeer0Org1
+    peer chaincode invoke -o $ORDERER_ADDRESS\
+    --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED\
+    --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
+    --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
+    --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
+    -c '{"Args":["addNewProduct", "Pharmacy6_AUGBID_06.06.2021", "AUGBID_01.01.2020","AUGBID",  "Pharmacy6","13","65","03.03.2033","01.03.2020","on sale", "03.04.2020","Pharmacy1",  "" ]}'
+    echo "===================== Successfully Added New Product===================== "
+}
+chaincodeAddProduct7() {
+    echo "===================== Started Add Product Chaincode Function===================== "
+    setEnvVarsForPeer0Org1
+    peer chaincode invoke -o $ORDERER_ADDRESS\
+    --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED\
+    --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
+    --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
+    --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
+    -c '{"Args":["addNewProduct", "Pharmacy7_AUGBID_07.06.2021", "AUGBID_01.01.2020","AUGBID",  "Pharmacy7","13","65","03.03.2033","01.03.2020","on sale", "03.04.2020","Pharmacy1",  "" ]}'
+    echo "===================== Successfully Added New Product===================== "
+}
+#packageChaincode
+#installChaincode
+#queryInstalled
+#approveForMyOrg1
+#checkCommitReadynessForOrg1
+#approveForMyOrg2
+#checkCommitReadynessForOrg2
+#commitChaincodeDefination
+#queryCommitted
+#sleep 3
+#chaincodeInvokeInit
 sleep 3
-chaincodeInvokeInit
-#sleep 3
-#chaincodeAddProduct
-#sleep 3
-#chaincodeQueryProductById
-#sleep 3
-#chaincodeTransferProductOwnership
-#sleep 3
-#chaincodePurchaseSomeProduct
+chaincodeAddProduct
+sleep 3
+chaincodeAddProduct3
+sleep 3
+chaincodeAddProduct4
+sleep 3
+chaincodeAddProduct5
+sleep 3
+chaincodeAddProduct6
+sleep 3
+chaincodeAddProduct7
+sleep 3
+chaincodeQueryProductById
+sleep 3
+chaincodeTransferProductOwnership
+sleep 3
+chaincodePurchaseSomeProduct
 #sleep 5
 #chaincodeTransferProductSolveModel
 #sleep 5
