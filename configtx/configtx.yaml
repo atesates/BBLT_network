@@ -33,13 +33,13 @@ Organizations:
         Policies:
             Readers:
                 Type: Signature
-                Rule: "AND('OrdererMSP.member')"
+                Rule: "OR('OrdererMSP.member')"
             Writers:
                 Type: Signature
-                Rule: "AND('OrdererMSP.member')"
+                Rule: "OR('OrdererMSP.member')"
             Admins:
                 Type: Signature
-                Rule: "AND('OrdererMSP.admin')"
+                Rule: "OR('OrdererMSP.admin')"
 
         OrdererEndpoints:
             - orderer.example.com:7050
@@ -71,14 +71,6 @@ Organizations:
                 Type: Signature
                 Rule: "OR('Org1MSP.peer')"
 
-        # leave this flag set to true.
-        AnchorPeers:
-            # AnchorPeers defines the location of peers which can be used
-            # for cross org gossip communication.  Note, this value is only
-            # encoded in the genesis block in the Application section context
-            - Host: peer0.org1.example.com
-              Port: 7051
-
     - &Org2
         # DefaultOrg defines the organization which is used in the sampleconfig
         # of the fabric.git development environment
@@ -105,13 +97,6 @@ Organizations:
             Endorsement:
                 Type: Signature
                 Rule: "OR('Org2MSP.peer')"
-
-        AnchorPeers:
-            # AnchorPeers defines the location of peers which can be used
-            # for cross org gossip communication.  Note, this value is only
-            # encoded in the genesis block in the Application section context
-            - Host: peer0.org2.example.com
-              Port: 9051
 
 ################################################################################
 #
@@ -316,7 +301,7 @@ Channel: &ChannelDefaults
 ################################################################################
 Profiles:
 
-    TwoOrgsOrdererGenesis:
+    TwoOrgsApplicationGenesis:
         <<: *ChannelDefaults
         Orderer:
             <<: *OrdererDefaults
@@ -324,14 +309,6 @@ Profiles:
                 - *OrdererOrg
             Capabilities:
                 <<: *OrdererCapabilities
-        Consortiums:
-            SampleConsortium:
-                Organizations:
-                    - *Org1
-                    - *Org2
-    TwoOrgsChannel:
-        Consortium: SampleConsortium
-        <<: *ChannelDefaults
         Application:
             <<: *ApplicationDefaults
             Organizations:
