@@ -144,7 +144,7 @@ chaincodeAddProduct() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["AddNewProduct", "Pharmacy1_AUGBID_01.01.2021", "AUGBID_01.01.2020","AUGBID",  "Pharmacy1","13","65","03.03.2021","01.03.2020","on sale", "03.04.2020","Pharmacy1",  "" ]}'
+    -c '{"Args":["AddNewProduct", "Pharmacy1_AUGBID_01.01.2021", "AUGBID_01.01.2020","AUGBID",  "Pharmacy1","11","10000000","03.03.2021","01.03.2020","on sale", "03.04.2020","Pharmacy1",  "" ]}'
    
 }
 chaincodeAddProduct2() {
@@ -155,7 +155,7 @@ chaincodeAddProduct2() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["AddNewProduct", "Pharmacy2_AUGBID_03.01.2021", "AUGBID_02.01.2020","AUGBID",  "Pharmacy1","13","65","03.03.2023","01.03.2020","on sale", "03.04.2020","Pharmacy1",  "" ]}'
+    -c '{"Args":["AddNewProduct", "Pharmacy2_AUGBID_02.02.2021", "AUGBID_02.01.2020","AUGBID",  "Pharmacy2","12","62","03.03.2023","02.03.2020","on sale", "03.04.2020","Pharmacy2",  "" ]}'
    
 }
 getAll() {
@@ -189,7 +189,7 @@ chaincodeTransferProductOwnership() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["ChangeProductOwnership", "Pharmacy1_AUGBID_01.01.2021","Pharmacy2"]}'
+    -c '{"Args":["ChangeProductOwnership", "Pharmacy1_AUGBID_01.01.2021","Pharmacy11"]}'
     echo "===================== Successfully Product Ownership Transferred Chaincode Function===================== "
 }
 
@@ -212,7 +212,7 @@ chaincodePurchaseSomeProduct5() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["PurchaseSomeProduct", "Pharmacy1_AUGBID_01.01.2021", "Pharmacy2", "1","5"]}'
+    -c '{"Args":["PurchaseSomeProduct", "Pharmacy2_AUGBID_02.02.2021", "Pharmacy1", "1","5"]}'
     echo "===================== Successfully purchased Some Product 5 Chaincode Function===================== "
 }
 chaincodePurchaseSomeProduct10() {
@@ -223,7 +223,7 @@ chaincodePurchaseSomeProduct10() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["PurchaseSomeProduct", "Pharmacy1_AUGBID_01.01.2021", "Pharmacy2", "1","10"]}'
+    -c '{"Args":["PurchaseSomeProduct", "Pharmacy1_AUGBID_01.01.2021", "Pharmacy3", "1","10"]}'
     echo "===================== Successfully purchased Some Product 10 Chaincode Function===================== "
 }
 chaincodeTransferProductSolveModel() {
@@ -266,21 +266,25 @@ sleep 3
 chaincodeInvokeInit
 }
 
-chaincodeLifeCycle
-
+secondStep(){
 sleep 3
 chaincodeAddProduct
 sleep 3
 chaincodeAddProduct2
 sleep 3
 getAll
+}
+
+chaincodeLifeCycle
+
+secondStep
 
 
 #sleep 3
 #chaincodeQueryProductById
 #sleep 3
 #chaincodeTransferProductOwnership
-sleep 3
+#sleep 3
 chaincodePurchaseSomeProduct1
 sleep 3
 chaincodePurchaseSomeProduct5
