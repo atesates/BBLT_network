@@ -144,7 +144,7 @@ chaincodeAddProduct() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["AddNewProduct", "Pharmacy1_AUGBID_01.01.2021", "AUGBID_01.01.2020","AUGBID",  "Pharmacy1","11","10000000","03.03.2021","01.03.2020","on sale", "03.04.2020","Pharmacy1",  "" ]}'
+    -c '{"Args":["AddNewProduct", "Pharmacy1_AUGBID_01.01.2021", "AUGBID_01.01.2020","AUGBID",  "Pharmacy1","11","10000000","03.03.2021","01.03.2020","on sale", "03.04.2020","Pharmacy1",  "" , "1"]}'
    
 }
 chaincodeAddProduct2() {
@@ -155,7 +155,7 @@ chaincodeAddProduct2() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["AddNewProduct", "Pharmacy2_AUGBID_02.02.2021", "AUGBID_02.01.2020","AUGBID",  "Pharmacy2","12","62","03.03.2023","02.03.2020","on sale", "03.04.2020","Pharmacy2",  "" ]}'
+    -c '{"Args":["AddNewProduct", "Pharmacy2_AUGBID_02.02.2021", "AUGBID_02.01.2020","AUGBID",  "Pharmacy2","12","62","03.03.2023","02.03.2020","on sale", "03.04.2020","Pharmacy2",  "", "1" ]}'
    
 }
 getAll() {
