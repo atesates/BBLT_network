@@ -1,4 +1,5 @@
 sudo rm -rf /home/ates/eclipse-workspace/fabricjavaclientproduct/wallet/*
+sudo rm -rf /home/ates/fabric-samples/asset-transfer-basic/application-javascript/wallet/*
 
 export PATH=${PWD}/../bin:${PWD}:$PATH
 export FABRIC_CFG_PATH=${PWD}/../config/
@@ -11,7 +12,7 @@ export CORE_PEER_TLS_ROOTCERT_FILE_ORG2=${PWD}/organizations/peerOrganizations/o
 CHANNEL_NAME="samplechannel"
 CHAINCODE_NAME="ProductTransfer"
 CHAINCODE_VERSION="1"
-CHAINCODE_PATH="../chaincode/producttransfer/build/install/producttransfer"
+CHAINCODE_PATH="../chaincode/medicinetransfer/build/install/medicinetransfer"
 CHAINCODE_LANG="java"
 CHAINCODE_LABEL="medicinetransfer_1"
 
@@ -143,7 +144,7 @@ chaincodeAddProduct() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["addNewProduct", "Pharmacy1_AUGBID_02.01.2021", "AUGBID_01.01.2020","AUGBID",  "Pharmacy1","13","65","03.03.2021","01.03.2020","on sale", "03.04.2020","Pharmacy1",  "" ]}'
+    -c '{"Args":["AddNewProduct", "Pharmacy1_AUGBID_01.01.2021", "AUGBID_01.01.2020","AUGBID",  "Pharmacy1","13","65","03.03.2021","01.03.2020","on sale", "03.04.2020","Pharmacy1",  "" ]}'
    
 }
 chaincodeAddProduct2() {
@@ -154,7 +155,7 @@ chaincodeAddProduct2() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["addNewProduct", "Pharmacy1_AUGBID_03.01.2021", "AUGBID_02.01.2020","AUGBID",  "Pharmacy1","13","65","03.03.2023","01.03.2020","on sale", "03.04.2020","Pharmacy1",  "" ]}'
+    -c '{"Args":["AddNewProduct", "Pharmacy2_AUGBID_03.01.2021", "AUGBID_02.01.2020","AUGBID",  "Pharmacy1","13","65","03.03.2023","01.03.2020","on sale", "03.04.2020","Pharmacy1",  "" ]}'
    
 }
 getAll() {
@@ -165,7 +166,7 @@ getAll() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["GetAllAssets"]}'
+    -c '{"Args":["GetAllProducts"]}'
    
 }
 chaincodeQueryProductById() {
@@ -176,7 +177,7 @@ chaincodeQueryProductById() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["queryProductById", "Pharmacy1_AUGBID_01.01.2021"]}'
+    -c '{"Args":["QueryProductById", "Pharmacy1_AUGBID_01.01.2021"]}'
     echo "===================== Successfully Invoked Query Product By Id Chaincode Function===================== "
 }
 
@@ -188,22 +189,43 @@ chaincodeTransferProductOwnership() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["changeProductOwnership", "Pharmacy1_AUGBID_01.01.2021","Pharmacy2"]}'
+    -c '{"Args":["ChangeProductOwnership", "Pharmacy1_AUGBID_01.01.2021","Pharmacy2"]}'
     echo "===================== Successfully Product Ownership Transferred Chaincode Function===================== "
 }
 
-chaincodePurchaseSomeProduct() {
-    echo "===================== Started purchase Some Product Chaincode Function=============== "
+chaincodePurchaseSomeProduct1() {
+    echo "===================== Started Purchase Some Product Chaincode Function=============== "
     setEnvVarsForPeer0Org1
     peer chaincode invoke -o $ORDERER_ADDRESS\
     --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED\
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["purchaseSomeProduct", "Pharmacy1_AUGBID_01.01.2021", "Pharmacy3", "1"]}'
-    echo "===================== Successfully purchased Some Product Chaincode Function===================== "
+    -c '{"Args":["PurchaseSomeProduct", "Pharmacy1_AUGBID_01.01.2021", "Pharmacy2", "1","1"]}'
+    echo "===================== Successfully Purchased Some Product Chaincode Function===================== "
 }
-
+chaincodePurchaseSomeProduct5() {
+    echo "===================== Started Purchase Some Product 5 Chaincode Function=============== "
+    setEnvVarsForPeer0Org1
+    peer chaincode invoke -o $ORDERER_ADDRESS\
+    --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED\
+    --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
+    --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
+    --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
+    -c '{"Args":["PurchaseSomeProduct", "Pharmacy1_AUGBID_01.01.2021", "Pharmacy2", "1","5"]}'
+    echo "===================== Successfully purchased Some Product 5 Chaincode Function===================== "
+}
+chaincodePurchaseSomeProduct10() {
+    echo "===================== Started purchase Some Product 10 Chaincode Function=============== "
+    setEnvVarsForPeer0Org1
+    peer chaincode invoke -o $ORDERER_ADDRESS\
+    --ordererTLSHostnameOverride orderer.example.com --tls $CORE_PEER_TLS_ENABLED\
+    --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
+    --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
+    --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
+    -c '{"Args":["PurchaseSomeProduct", "Pharmacy1_AUGBID_01.01.2021", "Pharmacy2", "1","10"]}'
+    echo "===================== Successfully purchased Some Product 10 Chaincode Function===================== "
+}
 chaincodeTransferProductSolveModel() {
     echo "===================== Started SolveModel Transferred Chaincode Function========== "
     setEnvVarsForPeer0Org1
@@ -252,12 +274,18 @@ sleep 3
 chaincodeAddProduct2
 sleep 3
 getAll
+
+
 #sleep 3
 #chaincodeQueryProductById
 #sleep 3
 #chaincodeTransferProductOwnership
-#sleep 3
-#chaincodePurchaseSomeProduct
+sleep 3
+chaincodePurchaseSomeProduct1
+sleep 3
+chaincodePurchaseSomeProduct5
+sleep 3
+chaincodePurchaseSomeProduct10
 #sleep 5
 #chaincodeTransferProductSolveModel
 #sleep 5
