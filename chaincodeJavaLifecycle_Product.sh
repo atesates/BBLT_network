@@ -212,7 +212,7 @@ chaincodePurchaseSomeProduct5() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["PurchaseSomeProduct", "Pharmacy2_AUGBID_02.02.2021", "Pharmacy1", "1","5"]}'
+    -c '{"Args":["PurchaseSomeProduct", "Pharmacy1_AUGBID_01.01.2021", "Pharmacy2", "1","5"]}'
     echo "===================== Successfully purchased Some Product 5 Chaincode Function===================== "
 }
 chaincodePurchaseSomeProduct10() {
@@ -223,7 +223,7 @@ chaincodePurchaseSomeProduct10() {
     --cafile $ORDERER_CA -C ${CHANNEL_NAME} --name ${CHAINCODE_NAME}\
     --peerAddresses localhost:7051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG1\
     --peerAddresses localhost:9051 --tlsRootCertFiles $CORE_PEER_TLS_ROOTCERT_FILE_ORG2\
-    -c '{"Args":["PurchaseSomeProduct", "Pharmacy1_AUGBID_01.01.2021", "Pharmacy3", "1","10"]}'
+    -c '{"Args":["PurchaseSomeProduct", "Pharmacy2_AUGBID_02.02.2021", "Pharmacy1", "1","10"]}'
     echo "===================== Successfully purchased Some Product 10 Chaincode Function===================== "
 }
 chaincodeTransferProductSolveModel() {
